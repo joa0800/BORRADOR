@@ -53,8 +53,7 @@
       line-height: 1.2;
     }
     .nav-logo span { display: block; font-size: 0.7rem; font-weight: 300; color: rgba(232,201,122,0.7); letter-spacing: 0.18em; text-transform: uppercase; font-family: 'Jost', sans-serif; }
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-    .nav-links a {
+.nav-links { display: flex; gap: 2.2rem; list-style: none; z-index: 100; }    .nav-links a {
       color: rgba(245,240,232,0.85);
       text-decoration: none;
       font-size: 0.82rem;
@@ -690,9 +689,9 @@
     /*-Aca esta todo lo responsive-*/
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
+      .nav-links { display: none !important; }
       .nav-links.open {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
@@ -1012,7 +1011,7 @@
         </div>
 
         <div class="ventajas-quote reveal reveal-delay-2">
-<span style="color:var(--dorado);">Invertir<br/>en tierra<br/>es invertir<br/>en el<br/>futuro.</span>        </div>
+          <span style="color:var(--dorado);">Invertir<br/>en tierra<br/>es invertir<br/>en el<br/>futuro.</span>        </div>
       </div>
     </div>
   </section>
@@ -1095,6 +1094,10 @@
     function closeMenu() {
       document.getElementById('navLinks').classList.remove('open');
     }
+    // Cierra el menú si el usuario hace scroll
+    window.addEventListener('scroll', function() {
+      document.getElementById('navLinks').classList.remove('open');
+    });
 
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
