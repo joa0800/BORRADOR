@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emprendimientos del Pilar – Terrenos en Venta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde-oscuro: #1a2e1a;
+      --verde-medio: #2d4a2d;
+      --verde-claro: #4a7c4a;
+      --dorado: #c9a84c;
+      --dorado-claro: #e8c97a;
+      --crema: #f5f0e8;
+      --beige: #ede4d3;
+      --blanco: #fdfaf5;
+      --texto: #1a1a14;
+      --texto-suave: #5a5a4a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--blanco);
+      color: var(--texto);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(26, 46, 26, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.25);
+      transition: padding 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--dorado);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+    .nav-logo span { display: block; font-size: 0.7rem; font-weight: 300; color: rgba(232,201,122,0.7); letter-spacing: 0.18em; text-transform: uppercase; font-family: 'Jost', sans-serif; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(245,240,232,0.85);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--dorado);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--dorado); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--dorado); transition: 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--verde-oscuro);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 80%, rgba(74,124,74,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 20% 30%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        linear-gradient(160deg, #0d1d0d 0%, #1a2e1a 40%, #0f1f0f 100%);
+    }
+
+    /* animated grid lines */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 20s linear infinite;
+    }
+    @keyframes gridDrift { from { transform: translateY(0); } to { transform: translateY(60px); } }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      padding: 2rem;
+      animation: heroFadeIn 1.2s ease-out both;
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--dorado);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.4rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      animation: heroFadeIn 1.2s 0.2s ease-out both;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300;
+      color: var(--crema);
+      line-height: 0.95;
+      margin-bottom: 0.2em;
+      animation: heroFadeIn 1.2s 0.3s ease-out both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--dorado);
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: rgba(232,201,122,0.7);
+      font-weight: 300;
+      font-style: italic;
+      margin-top: 1rem;
+      margin-bottom: 2.5rem;
+      animation: heroFadeIn 1.2s 0.4s ease-out both;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(245,240,232,0.65);
+      max-width: 520px;
+      margin: 0 auto 2.8rem;
+      line-height: 1.75;
+      font-weight: 300;
+      animation: heroFadeIn 1.2s 0.5s ease-out both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: heroFadeIn 1.2s 0.6s ease-out both;
+    }
+
+    .btn-primary {
+      background: var(--dorado);
+      color: var(--verde-oscuro);
+      padding: 0.9rem 2.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover { background: var(--dorado-claro); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+
+    .btn-secondary {
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--dorado);
+      padding: 0.9rem 2.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-secondary:hover { background: rgba(201,168,76,0.12); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(245,240,232,0.4);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ── SECCIÓN GENÉRICA ── */
+    section { padding: 6rem 2rem; }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dorado);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--dorado);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--verde-claro); }
+
+    /* ── NOSOTROS ── */
+    .about { background: var(--blanco); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      height: 500px;
+    }
+
+    .about-visual-main {
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a2e1a 0%, #2d4a2d 40%, #4a7c4a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Big decorative SVG land/horizon */
+    .land-svg {
+      width: 80%;
+      opacity: 0.7;
+    }
+
+    .about-visual-accent {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 160px;
+      height: 160px;
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-box {
+      background: var(--crema);
+      border-left: 3px solid var(--dorado);
+      padding: 1.2rem 1.4rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--verde-oscuro);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--texto-suave);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.3rem;
+    }
+
+    .about-text p {
+      color: var(--texto-suave);
+      line-height: 1.85;
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── TERRENOS ── */
+    .terrenos { background: var(--crema); }
+
+    .terrenos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 3rem;
+    }
+
+    .terreno-card {
+      background: var(--blanco);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .terreno-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(26,46,26,0.12); }
+
+    .terreno-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terreno-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--dorado);
+      color: var(--verde-oscuro);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+    }
+
+    .terreno-body { padding: 1.5rem; }
+
+    .terreno-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--verde-oscuro);
+      margin-bottom: 0.5rem;
+    }
+
+    .terreno-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--texto-suave);
+      margin-bottom: 1rem;
+    }
+    .terreno-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+    .terreno-desc {
+      font-size: 0.9rem;
+      color: var(--texto-suave);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .terreno-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--verde-oscuro);
+    }
+    .terreno-price small {
+      font-size: 0.85rem;
+      color: var(--texto-suave);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+
+    /* icon strips */
+    .features-strip {
+      display: flex;
+      gap: 0;
+      margin-top: 3.5rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .feature-item {
+      flex: 1;
+      background: var(--verde-oscuro);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+    .feature-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--dorado);
+      margin-bottom: 0.4rem;
+    }
+    .feature-text { font-size: 0.82rem; color: rgba(245,240,232,0.55); line-height: 1.6; }
+
+    /* ── VENTAJAS ── */
+    .ventajas { background: var(--verde-oscuro); }
+    .ventajas .section-title { color: var(--crema); }
+    .ventajas .section-title em { color: var(--dorado-claro); }
+    .ventajas .section-label { color: var(--dorado); }
+    .ventajas-text { color: rgba(245,240,232,0.6); font-size: 1rem; font-weight: 300; line-height: 1.8; max-width: 520px; }
+
+    .ventajas-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .ventajas-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    .ventaja-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.2rem;
+      border-radius: 6px;
+      border: 1px solid rgba(201,168,76,0.12);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .ventaja-row:hover { border-color: rgba(201,168,76,0.35); background: rgba(201,168,76,0.04); }
+    .ventaja-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.25);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 2.5rem;
+    }
+    .ventaja-content h4 { color: var(--crema); font-size: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .ventaja-content p { font-size: 0.85rem; color: rgba(245,240,232,0.45); line-height: 1.6; }
+
+    /* big decorative quote */
+    .ventajas-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(201,168,76,0.15);
+      line-height: 1.1;
+      text-align: right;
+    }
+    .ventajas-quote strong { display: block; color: var(--dorado); font-weight: 600; font-size: 0.9em; }
+
+    /* ── CONTACTO ── */
+    .contacto { background: var(--beige); }
+
+    .contacto-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contacto-info p {
+      color: var(--texto-suave);
+      line-height: 1.85;
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .social-links { display: flex; flex-direction: column; gap: 1rem; }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.1rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .social-link.wsp {
+      background: #1a4f2a;
+      color: #fff;
+    }
+    .social-link.wsp:hover { background: #25613a; transform: translateX(6px); box-shadow: 0 8px 20px rgba(26,79,42,0.25); }
+
+    .social-link.fb {
+      background: #1a2f4a;
+      color: #fff;
+    }
+    .social-link.fb:hover { background: #1e3a5f; transform: translateX(6px); box-shadow: 0 8px 20px rgba(26,47,74,0.25); }
+
+    .social-link.ig {
+      background: linear-gradient(135deg, #833ab4 0%, #c13584 40%, #e1306c 70%, #fd1d1d 100%);
+      color: #fff;
+    }
+    .social-link.ig:hover { transform: translateX(6px); box-shadow: 0 8px 20px rgba(193,53,132,0.3); }
+
+    .social-link svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .social-link-text small { display: block; font-size: 0.75rem; opacity: 0.7; font-weight: 300; }
+
+    /* contact form */
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--texto-suave); font-weight: 500; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 4px;
+      background: var(--blanco);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.95rem;
+      color: var(--texto);
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--verde-claro); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .btn-form {
+      background: var(--verde-oscuro);
+      color: var(--dorado);
+      padding: 1rem 2.4rem;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      align-self: flex-start;
+    }
+    .btn-form:hover { background: var(--verde-medio); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(26,46,26,0.25); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--verde-oscuro);
+      color: rgba(245,240,232,0.55);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--dorado);
+      margin-bottom: 0.4rem;
+    }
+    .footer-logo span { display: block; font-size: 0.72rem; font-family: 'Jost', sans-serif; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,201,122,0.5); }
+    footer p { font-size: 0.82rem; margin-top: 1rem; }
+    .footer-divider { width: 40px; height: 1px; background: rgba(201,168,76,0.3); margin: 1.2rem auto; }
+
+    /* ── WHATSAPP FLOTANTE ── */
+    .wsp-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: all 0.3s;
+      animation: fabPulse 3s ease-in-out infinite;
+    }
+    .wsp-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 32px rgba(37,211,102,0.65), 0 0 0 8px rgba(37,211,102,0.08); }
+    }
+    .wsp-fab svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* tooltip */
+    .wsp-fab::before {
+      content: '¡Consultanos!';
+      position: absolute;
+      right: 70px;
+      background: var(--verde-oscuro);
+      color: var(--crema);
+      font-size: 0.78rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      font-family: 'Jost', sans-serif;
+    }
+    .wsp-fab:hover::before { opacity: 1; }
+
+    /* Decoraciones en svg */
+    .divider-wave {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin-top: -1px;
+    }
+
+    /* Desplay de escroll!! */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /*-Aca esta todo lo responsive-*/
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(26,46,26,0.97);
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        z-index: 99;
+      }
+      .nav-links.open a { font-size: 1.4rem; }
+      .hamburger { display: flex; z-index: 101; }
+
+      .about-inner,
+      .ventajas-inner,
+      .contacto-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-visual { height: 280px; }
+      .terrenos-grid { grid-template-columns: 1fr; }
+      .features-strip { flex-direction: column; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.2rem; }
+    }
+
+    /* Terreno card colored backgrounds */
+    .tc-1 { background: linear-gradient(135deg, #2d4a2d 0%, #1a2e1a 100%); }
+    .tc-2 { background: linear-gradient(135deg, #3a5a1a 0%, #2a4010 100%); }
+    .tc-3 { background: linear-gradient(135deg, #1a3a4a 0%, #0d2030 100%); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      Emprendimientos del Pilar
+      <span>Terrenos · Inversión · Futuro</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#nosotros" onclick="closeMenu()">Nosotros</a></li>
+      <li><a href="#terrenos" onclick="closeMenu()">Terrenos</a></li>
+      <li><a href="#ventajas" onclick="closeMenu()">¿Por qué elegirnos?</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  // clase tipo "hero"
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">📍
+        Buenos Aires</div>
+      <h1>
+        Emprendimientos
+        <em>del Pilar</em>
+      </h1>
+      <p class="hero-subtitle">Tu terreno ideal, hoy.</p>
+      <p class="hero-desc">Lotes residenciales y comerciales en las mejores zonas del corredor norte. Invertí en tierra, la inversión más segura.</p>
+      <div class="hero-ctas">
+        <a href="#terrenos" class="btn-primary">Ver Terrenos ↓</a>
+        <a href="https://wa.me/5491177173321" target="_blank" class="btn-secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <section class="about" id="nosotros">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-visual">
+          <div class="about-visual-main">
+            <!-- Decorative land illustration SVG -->
+            <svg class="land-svg" viewBox="0 0 500 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Sky gradient -->
+              <defs>
+                <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0d1d0d"/>
+                  <stop offset="100%" stop-color="#2d4a2d"/>
+                </linearGradient>
+                <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#4a7c4a"/>
+                  <stop offset="100%" stop-color="#1a2e1a"/>
+                </linearGradient>
+                <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#c9a84c"/>
+                  <stop offset="100%" stop-color="#e8c97a"/>
+                </linearGradient>
+              </defs>
+              <rect width="500" height="320" fill="url(#skyGrad)"/>
+              <!-- Stars -->
+              <circle cx="80" cy="40" r="1.5" fill="#e8c97a" opacity="0.6"/>
+              <circle cx="200" cy="20" r="1" fill="#e8c97a" opacity="0.5"/>
+              <circle cx="350" cy="55" r="1.5" fill="#e8c97a" opacity="0.7"/>
+              <circle cx="430" cy="30" r="1" fill="#e8c97a" opacity="0.4"/>
+              <circle cx="140" cy="70" r="1" fill="#e8c97a" opacity="0.5"/>
+              <!-- Moon -->
+              <circle cx="420" cy="50" r="22" fill="#c9a84c" opacity="0.15"/>
+              <circle cx="426" cy="44" r="16" fill="#c9a84c" opacity="0.2"/>
+              <!-- Horizon hills -->
+              <ellipse cx="100" cy="200" rx="180" ry="80" fill="#2d4a2d" opacity="0.8"/>
+              <ellipse cx="380" cy="210" rx="200" ry="90" fill="#233a23" opacity="0.9"/>
+              <!-- Land base -->
+              <rect x="0" y="220" width="500" height="100" fill="url(#landGrad)"/>
+              <!-- Grid lines on land (lot divisions) -->
+              <line x1="0" y1="240" x2="500" y2="240" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+              <line x1="0" y1="260" x2="500" y2="260" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
+              <line x1="0" y1="280" x2="500" y2="280" stroke="#c9a84c" stroke-width="0.8" opacity="0.2"/>
+              <line x1="80" y1="220" x2="80" y2="320" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+              <line x1="180" y1="220" x2="180" y2="320" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
+              <line x1="300" y1="220" x2="300" y2="320" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
+              <line x1="400" y1="220" x2="400" y2="320" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+              <!-- House silhouettes -->
+              <rect x="30" y="195" width="28" height="20" fill="#1a2e1a"/>
+              <polygon points="30,195 44,180 58,195" fill="#2d4a2d"/>
+              <rect x="36" y="205" width="8" height="10" fill="#c9a84c" opacity="0.3"/>
+              <rect x="130" y="188" width="35" height="25" fill="#162614"/>
+              <polygon points="130,188 147.5,170 165,188" fill="#233a23"/>
+              <rect x="138" y="200" width="10" height="13" fill="#c9a84c" opacity="0.4"/>
+              <!-- Sun/Glow on horizon -->
+              <ellipse cx="250" cy="220" rx="60" ry="12" fill="#c9a84c" opacity="0.12"/>
+              <!-- Golden text area -->
+              <rect x="150" y="125" width="200" height="60" rx="4" fill="rgba(201,168,76,0.08)" stroke="#c9a84c" stroke-width="0.5" stroke-opacity="0.3"/>
+              <text x="250" y="148" font-family="Georgia,serif" font-size="11" fill="#c9a84c" text-anchor="middle" opacity="0.8" font-style="italic">Tu inversión</text>
+              <text x="250" y="166" font-family="Georgia,serif" font-size="15" fill="#e8c97a" text-anchor="middle" font-weight="bold">en tierra firme</text>
+            </svg>
+          </div>
+          <div class="about-visual-accent"></div>
+        </div>
+
+        <div class="about-text">
+          <p class="section-label reveal">Quiénes somos</p>
+          <h2 class="section-title reveal reveal-delay-1">Tu socio en el <em>corredor norte</em></h2>
+          <p class="reveal reveal-delay-2">Somos una empresa familiar dedicada a la comercialización de terrenos en la zona del Pilar y sus alrededores. Con años de experiencia en el mercado inmobiliario del corredor norte bonaerense, conocemos cada rincón de la región.</p>
+          <p class="reveal reveal-delay-3">Acompañamos a cada cliente desde la primera consulta hasta la firma de escritura, con asesoramiento personalizado, transparencia total y compromiso real.</p>
+
+          <div class="about-stats">
+            <div class="stat-box reveal reveal-delay-1">
+              <div class="stat-number">+150</div>
+              <div class="stat-label">Terrenos vendidos</div>
+            </div>
+            <div class="stat-box reveal reveal-delay-2">
+              <div class="stat-number">+10</div>
+              <div class="stat-label">Años en el mercado</div>
+            </div>
+            <div class="stat-box reveal reveal-delay-3">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Documentación legal</div>
+            </div>
+            <div class="stat-box reveal reveal-delay-4">
+              <div class="stat-number">∞</div>
+              <div class="stat-label">Financiación disponible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="terrenos" id="terrenos">
+    <div class="container">
+      <p class="section-label reveal">Lo que ofrecemos</p>
+      <h2 class="section-title reveal reveal-delay-1">Nuestros <em>terrenos disponibles</em></h2>
+
+      <div class="terrenos-grid">
+
+        <div class="terreno-card reveal reveal-delay-1">
+          <div class="terreno-img tc-1">
+            <span class="terreno-tag">Disponible</span>
+            <svg viewBox="0 0 400 200" style="width:100%;height:100%;opacity:0.6" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="200" fill="#1a2e1a"/>
+              <line x1="0" y1="140" x2="400" y2="140" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+              <line x1="100" y1="140" x2="100" y2="200" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+              <line x1="200" y1="140" x2="200" y2="200" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+              <line x1="300" y1="140" x2="300" y2="200" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+              <ellipse cx="200" cy="140" rx="300" ry="40" fill="#2d4a2d" opacity="0.8"/>
+              <rect x="0" y="150" width="400" height="50" fill="#233a23"/>
+              <circle cx="200" cy="80" r="50" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+              <circle cx="200" cy="80" r="35" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+              <text x="200" y="85" font-family="Georgia" font-size="13" fill="#c9a84c" text-anchor="middle" opacity="0.6">Lote Residencial</text>
+            </svg>
+          </div>
+          <div class="terreno-body">
+            <h3 class="terreno-title">Loteo Haras del Pilar</h3>
+            <div class="terreno-meta">
+              <span>📐 600 m²</span>
+              <span>🌳 Con árboles</span>
+              <span>🛤️ Acceso asfaltado</span>
+            </div>
+            <p class="terreno-desc">Lote residencial en barrio cerrado en desarrollo. Escritura inmediata, agua y luz en el perímetro.</p>
+            <div class="terreno-price">USD 42.000 <small>/ financiado en pesos</small></div>
+          </div>
+        </div>
+
+        <div class="terreno-card reveal reveal-delay-2">
+          <div class="terreno-img tc-2">
+            <span class="terreno-tag" style="background:#4a7c4a;color:#fff">Oferta</span>
+            <svg viewBox="0 0 400 200" style="width:100%;height:100%;opacity:0.6" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="200" fill="#2a4010"/>
+              <rect x="0" y="150" width="400" height="50" fill="#1a2d0a"/>
+              <ellipse cx="180" cy="150" rx="280" ry="35" fill="#3a5a1a" opacity="0.8"/>
+              <line x1="0" y1="150" x2="400" y2="150" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+              <line x1="133" y1="150" x2="133" y2="200" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+              <line x1="266" y1="150" x2="266" y2="200" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+              <text x="200" y="85" font-family="Georgia" font-size="13" fill="#c9a84c" text-anchor="middle" opacity="0.6">Lote Comercial</text>
+              <rect x="160" y="50" width="80" height="40" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="terreno-body">
+            <h3 class="terreno-title">Zona Comercial Ruta 8</h3>
+            <div class="terreno-meta">
+              <span>📐 1.200 m²</span>
+              <span>🚗 Doble frente</span>
+              <span>⚡ Todos los servicios</span>
+            </div>
+            <p class="terreno-desc">Terreno comercial sobre corredor de alta densidad vehicular. Ideal para local, galpón o desarrollo mixto.</p>
+            <div class="terreno-price">USD 68.000 <small>/ negociable</small></div>
+          </div>
+        </div>
+
+        <div class="terreno-card reveal reveal-delay-3">
+          <div class="terreno-img tc-3">
+            <span class="terreno-tag" style="background:var(--dorado-claro);color:#1a1a00">Premium</span>
+            <svg viewBox="0 0 400 200" style="width:100%;height:100%;opacity:0.6" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="200" fill="#0d2030"/>
+              <rect x="0" y="150" width="400" height="50" fill="#0a1820"/>
+              <ellipse cx="200" cy="150" rx="320" ry="45" fill="#1a3a4a" opacity="0.8"/>
+              <line x1="0" y1="150" x2="400" y2="150" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+              <circle cx="200" cy="150" r="120" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+              <text x="200" y="75" font-family="Georgia" font-size="12" fill="#c9a84c" text-anchor="middle" opacity="0.6" font-style="italic">Country Premium</text>
+              <polygon points="200,30 220,60 200,55 180,60" fill="#c9a84c" opacity="0.25"/>
+            </svg>
+          </div>
+          <div class="terreno-body">
+            <h3 class="terreno-title">Country Los Eucaliptos</h3>
+            <div class="terreno-meta">
+              <span>📐 900 m²</span>
+              <span>🏊 Con amenities</span>
+              <span>🔒 Seguridad 24hs</span>
+            </div>
+            <p class="terreno-desc">Lote premium en barrio country con cancha de tenis, pileta y guardería de lanchas. Entorno exclusivo.</p>
+            <div class="terreno-price">USD 95.000 <small>/ escritura disponible</small></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="features-strip reveal">
+        <div class="feature-item">
+          <div class="feature-icon">📋</div>
+          <div class="feature-title">Escritura garantizada</div>
+          <p class="feature-text">Toda la documentación al día, sin sorpresas ni intermediarios.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          <div class="feature-title">Financiación propia</div>
+          <p class="feature-text">Planes en pesos accesibles, adaptados a tu situación.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📍</div>
+          <div class="feature-title">Zona estratégica</div>
+          <p class="feature-text">Corredor norte con alta valorización y demanda creciente.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🤝</div>
+          <div class="feature-title">Trato personalizado</div>
+          <p class="feature-text">Te acompañamos en cada etapa, de principio a fin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ventajas" id="ventajas">
+    <div class="container">
+      <div class="ventajas-inner">
+        <div>
+          <p class="section-label reveal">Por qué elegirnos</p>
+          <h2 class="section-title reveal reveal-delay-1">La tierra es la <em>inversión más segura</em></h2>
+          <p class="ventajas-text reveal reveal-delay-2">En Emprendimientos del Pilar trabajamos con honestidad, conocimiento del mercado local y compromiso genuino con cada cliente. No vendemos lotes: construimos proyectos de vida.</p>
+
+          <div class="ventajas-list">
+            <div class="ventaja-row reveal reveal-delay-1">
+              <div class="ventaja-num">01</div>
+              <div class="ventaja-content">
+                <h4>Conocemos la zona como nadie</h4>
+                <p>Años de presencia en Buenos Aires nos dan una ventaja única para encontrarte el lote ideal.</p>
+              </div>
+            </div>
+            <div class="ventaja-row reveal reveal-delay-2">
+              <div class="ventaja-num">02</div>
+              <div class="ventaja-content">
+                <h4>Transparencia total</h4>
+                <p>Sin costos ocultos. Los títulos, planos y deudas los analizamos juntos desde el primer día.</p>
+              </div>
+            </div>
+            <div class="ventaja-row reveal reveal-delay-3">
+              <div class="ventaja-num">03</div>
+              <div class="ventaja-content">
+                <h4>Agilidad en la gestión</h4>
+                <p>Procesos ágiles con escribanos de confianza para que tu inversión no espere.</p>
+              </div>
+            </div>
+            <div class="ventaja-row reveal reveal-delay-4">
+              <div class="ventaja-num">04</div>
+              <div class="ventaja-content">
+                <h4>Financiación flexible</h4>
+                <p>Planes a medida: seña + cuotas en pesos ajustadas, para que puedas acceder hoy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ventajas-quote reveal reveal-delay-2">
+<span style="color:var(--dorado);">Invertir<br/>en tierra<br/>es invertir<br/>en el<br/>futuro.</span>        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <div class="container">
+      <div class="contacto-inner" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+        <div class="contacto-info">
+          <p class="section-label reveal">Hablemos</p>
+          <h2 class="section-title reveal reveal-delay-1">¿Listo para encontrar <em>tu terreno</em>?</h2>
+          <p class="reveal reveal-delay-2">Estamos disponibles para responder todas tus consultas. Elegí el canal que más te resulte cómodo y te respondemos a la brevedad.</p>
+
+              <div class="social-links" style="align-items: center;">
+              <a href="https://wa.me/5491177173321" target="_blank" class="social-link wsp reveal reveal-delay-1">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <div>
+                WhatsApp
+                <small>Respondemos en instantes</small>
+              </div>
+            </a>
+
+        <div>
+          <p style="font-size:0.8rem;color:var(--texto-suave);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.4rem;font-weight:500;" class="reveal">O envianos un mensaje</p>
+          <div class="contact-form">
+            <div class="form-row">
+              <div class="form-group reveal reveal-delay-1">
+                <label>Nombre</label>
+                <input type="text" placeholder="Tu nombre completo" />
+              </div>
+              <div class="form-group reveal reveal-delay-2">
+                <label>Teléfono</label>
+                <input type="tel" placeholder="+54 9 11..." />
+              </div>
+            </div>
+            <div class="form-group reveal reveal-delay-1">
+              <label>Email</label>
+              <input type="email" placeholder="tu@correo.com" />
+            </div>
+            <div class="form-group reveal reveal-delay-2">
+              <label>¿Qué tipo de terreno buscás?</label>
+              <select>
+                <option value="">Seleccioná una opción</option>
+                <option>Residencial – para construir mi casa</option>
+                <option>Inversión – para valorizar</option>
+                <option>Country / Barrio cerrado</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-group reveal reveal-delay-3">
+              <label>Mensaje</label>
+              <textarea placeholder="Contanos un poco más sobre lo que buscás: zona de interés, presupuesto, etc."></textarea>
+            </div>
+            <button class="btn-form reveal reveal-delay-4" onclick="handleForm(event)">Enviar consulta →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">
+      Emprendimientos del Pilar
+      <span>Terrenos · Inversión · Futuro</span>
+    </div>
+    <div class="footer-divider"></div>
+    <p>📍 Buenos Aires, Argentina</p>
+    <p style="margin-top:1.8rem;font-size:0.75rem;opacity:0.4;">© 2025 Emprendimientos del Pilar SRL — Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/5491177173321" target="_blank" class="wsp-fab" title="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('navLinks').classList.remove('open');
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Form handler
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target;
+      btn.textContent = '✓ ¡Mensaje enviado!';
+      btn.style.background = '#4a7c4a';
+      btn.style.color = '#fff';
+      setTimeout(() => {
+        btn.textContent = 'Enviar consulta →';
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
